@@ -1,0 +1,8 @@
+#ifndef LOGGER_VERSION_H
+#define LOGGER_VERSION_H
+
+#define LOGGER_MAJOR 0
+#define LOGGER_MINOR 0
+#define LOGGER_PATCH 0
+
+#endif
