@@ -9,6 +9,7 @@ set(sources ${sources}
     Backend/Backend.cpp
     Handlers/Handlertemplate.cpp
     Handlers/Modulehandler.cpp
+    Handlers/Testplanhandler.cpp
     Modules/Modules.cpp
     TestEngine/TestEngine.cpp
     TestModule/TestModule.cpp

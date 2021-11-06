@@ -11,6 +11,7 @@
 #include "../Modules/Modules.h"
 
 #include "../Handlers/Modulehandler.h"
+#include "../Handlers/Testplanhandler.h"
 
 #include <string>
 #include <sstream>
@@ -47,6 +48,7 @@ private:
     std::shared_ptr<TestEngine> m_testengine;
     std::shared_ptr<Backend> m_backend;
     std::shared_ptr<JobController> m_jobcontroller;
+    std::shared_ptr<TestplanHandler> m_testplanhndlr;
 };
 
 #endif

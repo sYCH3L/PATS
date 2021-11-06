@@ -4,7 +4,6 @@
 
 Modules::Modules() {
     this->modulename = std::string("Undefined");
-    std::cout << "Modules base class init" << std::endl;
 }
 
 std::string Modules::Version() {

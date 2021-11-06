@@ -1,0 +1,61 @@
+/*
+* API route: POST /run/:name
+* Json to run testplan : 
+*/
+
+{
+    "testplan": "testplan_name",
+    "binary": "binary.bin"
+}
+
+
+/*
+* API route: POST /testplan/:name
+* Publish testplan 
+*/
+
+{
+    "testplan": "testplan_name",
+    "modules": ["moduleA","ModuleB"],
+    "tests": [ 
+        {
+            "name": "Test123",
+            "Parameter1": 23,
+            "Paraemeter2": 3.1,
+        },
+        {
+            "name": "Test",
+            "Parameter1": 53,
+            "Parameter2": 5.1
+        }
+    ]
+}
+/*
+* API route: DELETE /testplan/:name
+* Remove testplan 
+*/
+
+/*
+* API route: GET /results/
+* get all result listing
+*/
+
+/*
+* API route: GET /results/:id
+* get result with id
+*/
+
+/*
+* API route: GET /testmodules/
+* get all testmodules
+*/
+
+/*
+* API route: GET /testmodules/:id
+* get testmodule with id
+*/
+
+/*
+* API route: GET /running/
+* get running testplan
+*/

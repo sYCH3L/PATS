@@ -5,23 +5,27 @@ using std::filesystem::current_path;
 TestEngine::TestEngine(std::shared_ptr<TestModule> ptr) : Modules()
 {
     this->modulename = std::string("TestEngine");
+    this->m_testmodule = ptr;
 
     RegisterTestplans();
 }
 
 bool TestEngine::GetTestplanLocation(std::string key, std::string &res)
 {
-    for(auto &t : this->m_testplans)
     {
-        if(t.find(key) != std::string::npos)
+        std::unique_lock<std::mutex> lk(m_tmtx);
+        lk.lock();
+        for (auto &t : this->m_testplans)
         {
-            res = t;
-            return true;
+            if (t.find(key) != std::string::npos)
+            {
+                res = t;
+                return true;
+            }
         }
+        return false;
     }
-    return false;
 }
-
 
 void TestEngine::TestEngineLoop()
 {
@@ -29,18 +33,18 @@ void TestEngine::TestEngineLoop()
     {
         std::string next_test = GetFromQueue();
         std::string testplan_loc;
-        if (!next_test.empty() && !GetTestplanLocation(testplan_loc))
+        if (!next_test.empty() && !GetTestplanLocation(next_test, testplan_loc))
         {
             //Get all tests ready from testplan
             Testplan cur_testplan(next_test);
 
             std::vector<TestItem> tests = cur_testplan.GetTests();
             std::list<std::string> mods = cur_testplan.GetModules();
-            std::map<std::string, void*> test_funcs;
+            std::map<std::string, void *> test_funcs;
             for (std::string &m : mods)
             {
                 //Load module get tests
-                std::map<std::string, void*> temp = m_testmodule->GetTestsFromModule(m);
+                std::map<std::string, void *> temp = m_testmodule->GetTestsFromModule(m);
                 if (!temp.empty())
                 {
                     // Finds all tests from modules
@@ -62,14 +66,13 @@ void TestEngine::TestEngineLoop()
             }
 
             Results res(next_test);
-            for(auto &t : tests)
+            for (auto &t : tests)
             {
                 std::function<TestResult(std::vector<TestParameter>)> fn = GetStdFunction<TestResult(std::vector<TestParameter>)>(test_funcs[t.GetName()]);
-                res.AddTestResult(t.GetName(),fn(t.GetParameters()));
+                res.AddTestResult(t.GetName(), fn(t.GetParameters()));
             }
 
             //TODO: Do something with result
-
         }
     }
 }
@@ -114,7 +117,11 @@ bool TestEngine::AddToQueue(std::string name)
 
 void TestEngine::AddTestplan(std::string location)
 {
-    this->m_testplans.push_back(location);
+    {
+        std::unique_lock<std::mutex> lk(m_tmtx);
+        lk.lock();
+        this->m_testplans.push_back(location);
+    }
 }
 
 /**
@@ -135,5 +142,20 @@ std::string TestEngine::GetFromQueue()
             return test;
         }
         return std::string("");
+    }
+}
+
+void TestEngine::RemoveTestplan(std::string name)
+{
+    {
+        std::unique_lock<std::mutex> lk(m_tmtx);
+        lk.lock();
+        for (auto &t : this->m_testplans)
+        {
+            if (t.find(name) != std::string::npos)
+            {
+                this->m_testplans.remove(t);
+            }
+        }
     }
 }

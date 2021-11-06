@@ -31,6 +31,7 @@ public:
         return verstr.str();
     }
     void AddTestplan(std::string location);
+    void RemoveTestplan(std::string name);
     bool AddToQueue(std::string name);
 
 private:
@@ -44,6 +45,7 @@ private:
     std::queue<std::string> m_test_queue;
     std::shared_ptr<TestModule> m_testmodule;
     std::mutex m_mtx;
+    std::mutex m_tmtx;
 };
 
 #endif
