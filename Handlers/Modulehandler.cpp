@@ -8,7 +8,7 @@ Modulehandler::Modulehandler(std::list<Modules*> mods) : HandlerTemplate()
 void Modulehandler::InitRoutes(Rest::Router& router) 
 {
     using namespace Rest;
-    Routes::Get(router, "/versions", Routes::bind(&Modulehandler::DisplayAllModuleVersions, this));
+    Routes::Get(router, "/api/v1/versions", Routes::bind(&Modulehandler::DisplayAllModuleVersions, this));
 }
 
 void Modulehandler::DisplayAllModuleVersions(const Rest::Request &request, Http::ResponseWriter response) 

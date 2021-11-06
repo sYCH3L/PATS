@@ -6,8 +6,8 @@ ResHandler::ResHandler() : HandlerTemplate() {
 void ResHandler::InitRoutes(Rest::Router &router)
 {
     using namespace Rest;
-    Routes::Get(router, "/results", Routes::bind(&ResHandler::AllResults,this));
-    Routes::Get(router, "/results/:id", Routes::bind(&ResHandler::ResultById, this));
+    Routes::Get(router, "/api/v1/results", Routes::bind(&ResHandler::AllResults,this));
+    Routes::Get(router, "/api/v1/results/:id", Routes::bind(&ResHandler::ResultById, this));
 
 }
 

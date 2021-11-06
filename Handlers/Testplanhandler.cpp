@@ -10,10 +10,10 @@ TestplanHandler::TestplanHandler(std::shared_ptr<JobController> ptr) : HandlerTe
 void TestplanHandler::InitRoutes(Rest::Router& router)
 {
     using namespace Rest;
-    Routes::Post(router, "/testplan/:name", Routes::bind(&TestplanHandler::NewTestplan,this));
-    Routes::Delete(router, "/testplan/:name", Routes::bind(&TestplanHandler::Deletetestplan, this));
-    Routes::Get(router, "/testplan", Routes::bind(&TestplanHandler::AllTestplans,this));
-    Routes::Get(router, "/testplan/:name", Routes::bind(&TestplanHandler::Gettestplan, this));
+    Routes::Post(router, "/api/v1/testplan/:name", Routes::bind(&TestplanHandler::NewTestplan,this));
+    Routes::Delete(router, "/api/v1/testplan/:name", Routes::bind(&TestplanHandler::Deletetestplan, this));
+    Routes::Get(router, "/api/v1/testplan", Routes::bind(&TestplanHandler::AllTestplans,this));
+    Routes::Get(router, "/api/v1/testplan/:name", Routes::bind(&TestplanHandler::Gettestplan, this));
 
 }
 

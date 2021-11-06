@@ -59,7 +59,7 @@ void Backend::Start()
 void Backend::SetupRoutes()
 {
     using namespace Rest;
-    Routes::Get(this->m_router, "/version", Routes::bind(&Backend::GetAllversion, this));
+    Routes::Get(this->m_router, "/api/v1/version", Routes::bind(&Backend::GetAllversion, this));
 }
 
 void Backend::SetupExRoutes() {

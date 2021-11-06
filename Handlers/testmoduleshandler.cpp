@@ -7,8 +7,8 @@ TestModuleHandler::TestModuleHandler() : HandlerTemplate() {
 void TestModuleHandler::InitRoutes(Rest::Router &router)
 {
     using namespace Rest;
-    Routes::Get(router, "/testmodules", Routes::bind(&TestModuleHandler::AllModules, this));
-    Routes::Get(router, "/testmodules/:id", Routes::bind(&TestModuleHandler::ModulesById, this));
+    Routes::Get(router, "/api/v1/testmodules", Routes::bind(&TestModuleHandler::AllModules, this));
+    Routes::Get(router, "/api/v1/testmodules/:id", Routes::bind(&TestModuleHandler::ModulesById, this));
 }
 
 void TestModuleHandler::AllModules(const Rest::Request &request, Http::ResponseWriter response)

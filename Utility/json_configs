@@ -5,7 +5,9 @@
 
 {
     "testplan": "testplan_name",
-    "binary": "binary.bin"
+    "binary": "binary.bin",
+    "callbackURL": ""
+    
 }
 
 
