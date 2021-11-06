@@ -9,12 +9,16 @@ TestEngine::TestEngine(std::shared_ptr<TestModule> ptr) : Modules()
 
     RegisterTestplans();
 }
-
+/**
+ * Registers all available testplans from testplan directory
+ * @param key name of the testplan
+ * @param res the result will be placed there
+ * @return true if found false if not
+ */
 bool TestEngine::GetTestplanLocation(std::string key, std::string &res)
 {
     {
-        std::unique_lock<std::mutex> lk(m_tmtx);
-        lk.lock();
+        std::lock_guard<std::mutex> lk(m_tmtx);
         for (auto &t : this->m_testplans)
         {
             if (t.find(key) != std::string::npos)
@@ -36,7 +40,7 @@ void TestEngine::TestEngineLoop()
         if (!next_test.empty() && !GetTestplanLocation(next_test, testplan_loc))
         {
             //Get all tests ready from testplan
-            Testplan cur_testplan(next_test);
+            Testplan cur_testplan(testplan_loc);
 
             std::vector<TestItem> tests = cur_testplan.GetTests();
             std::list<std::string> mods = cur_testplan.GetModules();
@@ -79,7 +83,6 @@ void TestEngine::TestEngineLoop()
 
 /**
  * Registers all available testplans from testplan directory
- *
  */
 
 void TestEngine::RegisterTestplans()
@@ -96,7 +99,6 @@ void TestEngine::RegisterTestplans()
 
 /**
  * Adds testplan run to queue
- *
  * @param queue name of the module that is being loaded in.
  * @return true if added to queue
  */
@@ -104,37 +106,31 @@ void TestEngine::RegisterTestplans()
 bool TestEngine::AddToQueue(std::string name)
 {
     {
-        std::unique_lock<std::mutex> lk(m_mtx);
-        lk.lock();
+        std::lock_guard<std::mutex> lk(m_mtx);
         this->m_test_queue.push(name);
     }
 }
 /**
  * Adds testplan to available testplan list
- *
- * @param queue name of the module that is being loaded in.
+ * @param location location of the testplan to be added.
  */
 
 void TestEngine::AddTestplan(std::string location)
 {
     {
-        std::unique_lock<std::mutex> lk(m_tmtx);
-        lk.lock();
+        std::lock_guard<std::mutex> lk(m_tmtx);
         this->m_testplans.push_back(location);
     }
 }
 
 /**
  * Pops the next standing test from queue
- *
- *
  * @return returns next test to be run
  */
 std::string TestEngine::GetFromQueue()
 {
     {
-        std::unique_lock<std::mutex> lk(m_mtx);
-        lk.lock();
+        std::lock_guard<std::mutex>  lk(m_mtx);
         if (!m_test_queue.empty())
         {
             std::string test = this->m_test_queue.front();
@@ -144,12 +140,14 @@ std::string TestEngine::GetFromQueue()
         return std::string("");
     }
 }
-
+/**
+ * Pops the next standing test from queue
+ * @param name name of the testplan to be removed
+ */
 void TestEngine::RemoveTestplan(std::string name)
 {
     {
-        std::unique_lock<std::mutex> lk(m_tmtx);
-        lk.lock();
+        std::lock_guard<std::mutex>  lk(m_tmtx);
         for (auto &t : this->m_testplans)
         {
             if (t.find(name) != std::string::npos)

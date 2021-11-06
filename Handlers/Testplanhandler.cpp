@@ -19,6 +19,7 @@ void TestplanHandler::InitRoutes(Rest::Router& router)
 
 void TestplanHandler::NewTestplan(const Rest::Request &request, Http::ResponseWriter response) 
 {
+    auto name = request.param(":name").as<std::string>();
     std::cout << "New testplan" << std::endl;
     response.send(Http::Code::Ok, std::string("{ message: \"ok\" }"));
 }
