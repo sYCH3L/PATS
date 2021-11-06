@@ -25,8 +25,19 @@ ATS::ATS() : Modules()
     this->m_testmodule = std::shared_ptr<TestModule>(new TestModule);
     this->m_testengine = std::shared_ptr<TestEngine>(new TestEngine(this->m_testmodule));
     this->m_jobcontroller = std::shared_ptr<JobController>(new JobController());
-    this->m_testplanhndlr = std::shared_ptr<TestplanHandler>(new TestplanHandler(m_jobcontroller));
 
+    InitExtHandlers();
+
+    this->m_backend->SetupExRoutes();
+    this->m_backend->Start();
+}
+
+ATS::~ATS()
+{
+}
+
+void ATS::InitExtHandlers()
+{
     std::list<Modules *> funky;
 
     funky.push_back(this);
@@ -36,15 +47,14 @@ ATS::ATS() : Modules()
     funky.push_back(m_testmodule.get());
 
     this->m_modulehandler = std::shared_ptr<Modulehandler>(new Modulehandler(funky));
+    this->m_testplanhndlr = std::shared_ptr<TestplanHandler>(new TestplanHandler(m_jobcontroller));
+    this->m_reshndlr = std::shared_ptr<ResHandler>(new ResHandler());
+    this->m_testmodhndlr = std::shared_ptr<TestModuleHandler>(new TestModuleHandler());
 
     this->m_backend->AppendExthandlers(m_modulehandler.get());
     this->m_backend->AppendExthandlers(m_testplanhndlr.get());
-    this->m_backend->SetupExRoutes();
-    this->m_backend->Start();
-}
-
-ATS::~ATS()
-{
+    this->m_backend->AppendExthandlers(m_reshndlr.get());
+    this->m_backend->AppendExthandlers(m_testmodhndlr.get());
 }
 
 std::string ATS::GetConfigFile()

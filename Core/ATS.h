@@ -12,6 +12,8 @@
 
 #include "../Handlers/Modulehandler.h"
 #include "../Handlers/Testplanhandler.h"
+#include "../Handlers/reshandler.h"
+#include "../Handlers/testmoduleshandler.h"
 
 #include <string>
 #include <sstream>
@@ -34,6 +36,7 @@ private:
     bool ReadConfigFile();
     void GetDefaultParameters();
     std::string GetConfigFile();
+    void InitExtHandlers();
 
     /*
     Modulehandler* m_modulehandler;
@@ -49,6 +52,8 @@ private:
     std::shared_ptr<Backend> m_backend;
     std::shared_ptr<JobController> m_jobcontroller;
     std::shared_ptr<TestplanHandler> m_testplanhndlr;
+    std::shared_ptr<ResHandler> m_reshndlr;
+    std::shared_ptr<TestModuleHandler> m_testmodhndlr;
 };
 
 #endif

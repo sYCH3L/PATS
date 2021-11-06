@@ -10,6 +10,8 @@ set(sources ${sources}
     Handlers/Handlertemplate.cpp
     Handlers/Modulehandler.cpp
     Handlers/Testplanhandler.cpp
+    Handlers/reshandler.cpp
+    Handlers/testmoduleshandler.cpp
     Modules/Modules.cpp
     TestEngine/TestEngine.cpp
     TestModule/TestModule.cpp
