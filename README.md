@@ -82,8 +82,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 Modular Testing system for embedded systems with REST API interaction
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -110,7 +108,12 @@ To get a local copy up and running follow these simple example steps.
 This is an example of how to list things you need to use the software and how to install them.
 * apt
   ```sh
-  sudo apt install libboost-1.71-log-dev
+  sudo apt install libboost-log1.71-dev libboost-program-options1.71-dev
+  ```
+  ```sh
+  sudo add-apt-repository ppa:pistache+team/unstable
+  sudo apt update
+  sudo apt install libpistache-dev
   ```
 
 ### Installation
