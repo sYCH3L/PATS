@@ -17,7 +17,7 @@ ATS::ATS() : Modules()
     //Read in config file
     if (!ReadConfigFile())
     {
-        WriteGenericLog("ATS", "overwriting config");
+        WriteGenericLog(this->modulename, "overwriting config");
         GetDefaultParameters();
     }
 
@@ -94,7 +94,7 @@ bool ATS::ReadConfigFile()
     {
         std::ostringstream ss;
         ss << "Error occured in " << __FUNCTION__ << " with errorcode " << d.GetParseError() << std::endl;
-        WriteGenericLog("ATS", ss.str());
+        WriteGenericLog(this->modulename, ss.str());
         return false;
     }
 
@@ -104,7 +104,7 @@ bool ATS::ReadConfigFile()
 
         if (versionstr != Version())
         {
-            WriteGenericLog("ATS", "config file version is wrong");
+            WriteGenericLog(this->modulename, "config file version is wrong");
             return false;
         }
     }
