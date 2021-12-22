@@ -30,13 +30,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/sYCH3L/PATS">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.jpg" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Pretty Awesome Testing System</h3>
 
   <p align="center">
-    project_description
+    Modular testing system for behavioral testing of an embedded device, suited running on rpi/alternatives with electrical connections on DUT
     <br />
     <a href="https://github.com/sYCH3L/PATS"><strong>Explore the docs »</strong></a>
     <br />
