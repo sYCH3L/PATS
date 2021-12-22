@@ -110,11 +110,8 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   sudo apt install libboost-log1.71-dev libboost-program-options1.71-dev
   ```
-  ```sh
-  sudo add-apt-repository ppa:pistache+team/unstable
-  sudo apt update
-  sudo apt install libpistache-dev
-  ```
+* Pistache
+    [Documentation](  https://pistache.io/docs/)_
 
 ### Installation
 
