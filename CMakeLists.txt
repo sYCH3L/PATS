@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # set the project name and version
-project(ATS VERSION 0.1)
+project(PATS VERSION 0.1)
 
 set(sources ${sources} 
     main.cpp

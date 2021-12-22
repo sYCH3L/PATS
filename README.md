@@ -108,25 +108,24 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+* apt
   ```sh
-  npm install npm@latest -g
+  sudo apt install libboost-1.71-log-dev
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/sYCH3L/PATS.git
    ```
-3. Install NPM packages
+2. Build PATS
    ```sh
-   npm install
+   mkdir build && cd build && cmake .. && make
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Run ATS
+   ```sh
+   ./ATS
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -149,6 +148,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 - [] Write module compiling instructions
 - [] Write example front-end for controlling
+- [] Running testplans api call needs finishing
 - [] TestEngine
     - [] Test the current functionality
 
