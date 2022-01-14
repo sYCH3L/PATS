@@ -111,7 +111,7 @@ This is an example of how to list things you need to use the software and how to
   sudo apt install libboost-log1.71-dev libboost-program-options1.71-dev
   ```
 * Pistache
-    [Documentation](  https://pistache.io/docs/)_
+    [Documentation](  https://pistache.io/docs/)
 
 ### Installation
 

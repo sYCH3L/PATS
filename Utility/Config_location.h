@@ -6,6 +6,7 @@
 #define RESULTS_DIR "/results/"
 #define MODULES_DIR "/modules/"
 #define TESTPLANS_DIR "/testplans/"
+#define LOG_DIR "/logs/"
 
 
 #endif

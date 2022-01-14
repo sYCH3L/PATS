@@ -1,8 +1,9 @@
 #include "ATS.h"
-#include "rapidjson/document.h"
-#include "rapidjson/writer.h"
-#include "rapidjson/stringbuffer.h"
+#include <rapidjson/document.h>
+#include <rapidjson/writer.h>
+#include <rapidjson/stringbuffer.h>
 
+#include "../Logging/logger.h"
 #include "../Utility/Config_location.h"
 
 #include <unistd.h>
@@ -11,13 +12,20 @@
 #include <sstream>
 #include <filesystem>
 
+
+
 ATS::ATS() : Modules()
 {
     this->modulename = std::string("ATS");
+
+    ATS_LOG(trace) << "Starting program";
+
     //Read in config file
     if (!ReadConfigFile())
     {
-        WriteGenericLog(this->modulename, "overwriting config");
+        ATS_LOG(debug) << "overwriting config";
+        //WriteGenericLog(this->modulename, "overwriting config");
+
         GetDefaultParameters();
     }
 
