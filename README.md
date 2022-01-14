@@ -128,7 +128,7 @@ This is an example of how to list things you need to use the software and how to
    ```
 3. Run ATS
    ```sh
-   ./ATS
+   ./PATS
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
