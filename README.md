@@ -92,6 +92,7 @@ Modular Testing system for embedded systems with REST API interaction
 
 * [Boost.log](https://www.boost.org/doc/libs/1_71_0/libs/log/doc/html/index.html)
 * [Pistace REST API](https://pistache.io/)
+* [RAPIDJSON](https://rapidjson.org/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -106,6 +107,8 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
+* rapidjson
+  [Documentation](https://github.com/Tencent/rapidjson/)
 * apt
   ```sh
   sudo apt install libboost-log1.71-dev libboost-program-options1.71-dev
