@@ -42,20 +42,28 @@ std::string Testplan::ToJson()
     this->Serialize(writer);
     writer.EndObject();
 
+    return sb.GetString();
+}
+std::string Testplan::FromJson()
+{
+    
+}
+
+bool Testplan::WriteFile()
+{
+    std::string data = this->ToJson();
     std::string path = TESTPLANS_DIR + m_name + ".json";
 
     std::ofstream output(path);
 
     if(!output.is_open())
     {
-        return;
+        return false;
     }
 
-    output << sb.GetString();
+    output << data;
 
     output.close();
-}
-std::string Testplan::FromJson()
-{
-    
+
+    return true;
 }

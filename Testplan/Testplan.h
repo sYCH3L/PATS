@@ -22,6 +22,7 @@ public:
     std::string GetName();
     void SetTests(std::vector<TestItem> tsts);
     void SetModules(std::list<std::string> mdls);
+    bool WriteFile();
 
     template <typename Writer>
 	void Serialize(Writer &writer) const

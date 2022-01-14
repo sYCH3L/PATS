@@ -27,6 +27,21 @@ typedef union
     char *str;
     int i;
     double d;
+    bool operator=(int t)
+    {
+        i = t;
+        return true;
+    }
+    bool operator=(double t)
+    {
+        d = t;
+        return true;
+    }
+    bool operator=(const char* s)
+    {
+        *str = *s;
+        return true;
+    }
 } Value;
 class TestParameter
 {
@@ -44,10 +59,17 @@ public:
         m_type = t;
     }
 
-    template<class T>
-    void SetValue(T v)
+    void SetValue(int v)
     {
-        m_value = (T)v;
+        m_value = (int)v;
+    }
+    void SetValue(const char* v)
+    {
+        m_value = (const char*)v;
+    }
+    void SetValue(double v)
+    {
+        m_value = (double)v;
     }
 
     template <typename Writer>
@@ -62,17 +84,17 @@ public:
         {
         case StringType:
         {
-            writer.String(m_value, static_cast<std::string::size_type>(strlen((const char*)m_value)));
+            writer.String(m_value.str, static_cast<std::string::size_type>(strlen((const char*)m_value.str)));
             break;
         }
         case IntType:
         {
-            writer.Int(m_value);
+            writer.Int(m_value.i);
             break;
         }
         case DoubleType:
         {
-            writer.Double(m_value);
+            writer.Double(m_value.d);
             break;
         }
         }
@@ -84,7 +106,7 @@ private:
     Value m_value;
 };
 
-TestParameter DeserializeTestparameter(const rapidjson::Value &obj)
+static TestParameter DeserializeTestparameter(const rapidjson::Value &obj)
 {
     TestParameter par;
     TypeTag tmp = (TypeTag)obj["type"].GetInt();
