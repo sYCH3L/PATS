@@ -38,7 +38,7 @@ public:
         writer.EndArray();
         writer.String("modules");
         writer.StartArray();
-        for(auto &str : m_tests)
+        for(auto &str : m_modules)
         {
             writer.String(str.c_str(), static_cast<std::string::size_type>(str.length()));
         }

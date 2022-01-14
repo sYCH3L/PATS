@@ -26,15 +26,15 @@ public:
         writer.Int(m_starttime);
         writer.String("name");
         writer.String(m_test_name.c_str(), static_cast<std::string::size_type>(m_test_name.length()));
-        writer.String("tests")
+        writer.String("tests");
         writer.StartArray();
-        for(auto& k : m_tests)
+        for (auto const &[k, v] : m_tests)
         {
             writer.StartObject();
             writer.String("name");
             writer.String(k.c_str(), static_cast<std::string::size_type>(k.length()));
             writer.String("result");
-            writer.Int(m_tests[k]);
+            writer.Int(v);
             writer.EndObject();
         }
     }

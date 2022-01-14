@@ -62,12 +62,12 @@ public:
         {
         case StringType:
         {
-            writer.String(m_value.c_str(), static_cast<std::string::size_type>(m_value.length()));
+            writer.String(m_value, static_cast<std::string::size_type>(strlen((const char*)m_value)));
             break;
         }
         case IntType:
         {
-            writer.int(m_value);
+            writer.Int(m_value);
             break;
         }
         case DoubleType:
