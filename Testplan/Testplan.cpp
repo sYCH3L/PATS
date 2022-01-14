@@ -1,5 +1,9 @@
 #include "Testplan.h"
 
+#include "../Utility/Config_location.h"
+
+#include <fstream>
+
 Testplan::Testplan()
 {
     
@@ -23,4 +27,35 @@ std::vector<TestItem> Testplan::GetTests()
 std::list<std::string> Testplan::GetModules()
 {
     return this->m_modules;
+}
+std::string Testplan::GetName()
+{
+    return m_name;
+}
+
+std::string Testplan::ToJson()
+{
+	rapidjson::StringBuffer sb;
+	rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(sb);
+
+    writer.StartObject();
+    this->Serialize(writer);
+    writer.EndObject();
+
+    std::string path = TESTPLANS_DIR + m_name + ".json";
+
+    std::ofstream output(path);
+
+    if(!output.is_open())
+    {
+        return;
+    }
+
+    output << sb.GetString();
+
+    output.close();
+}
+std::string Testplan::FromJson()
+{
+    
 }

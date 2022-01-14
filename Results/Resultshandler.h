@@ -7,12 +7,37 @@
 #include <string>
 #include <ctime>
 
+#include <rapidjson/document.h>
+#include <rapidjson/writer.h>
+#include <rapidjson/stringbuffer.h>
+#include <rapidjson/prettywriter.h>
+
 class Results 
 {
 public:
     Results(std::string name);
     bool AddTestResult(std::string name, TestResult res);
     std::string ToJson();
+
+    template <typename Writer>
+	void Serialize(Writer &writer) const
+    {
+        writer.String("Time");
+        writer.Int(m_starttime);
+        writer.String("name");
+        writer.String(m_test_name.c_str(), static_cast<std::string::size_type>(m_test_name.length()));
+        writer.String("tests")
+        writer.StartArray();
+        for(auto& k : m_tests)
+        {
+            writer.StartObject();
+            writer.String("name");
+            writer.String(k.c_str(), static_cast<std::string::size_type>(k.length()));
+            writer.String("result");
+            writer.Int(m_tests[k]);
+            writer.EndObject();
+        }
+    }
 private:
     std::time_t m_starttime;
     std::string m_test_name;
