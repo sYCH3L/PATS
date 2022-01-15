@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "817fc19d-07b4-4f30-9ef5-1257f7f774da",
+		"name": "PATS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Testplans",
+			"item": [
+				{
+					"name": "GetAllTestPlans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/testplan",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"testplan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTestplan by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/testplan/?:name=asd",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"testplan",
+								""
+							],
+							"query": [
+								{
+									"key": ":name",
+									"value": "asd"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteTestplan",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/testplan/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"testplan",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New testplan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Modules",
+			"item": [
+				{
+					"name": "Get Module by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Get All modules",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "results",
+			"item": [
+				{
+					"name": "All results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Result by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl",
+			"value": "localhost:8080/api/v1/",
+			"type": "default"
+		}
+	]
+}

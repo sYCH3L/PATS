@@ -38,14 +38,6 @@ private:
     std::string GetConfigFile();
     void InitExtHandlers();
 
-    /*
-    Modulehandler* m_modulehandler;
-    TestModule *m_testmodule;
-    TestEngine *m_testengine;
-    Backend *m_backend;
-    JobController* m_jobcontroller;
-    */
-
     std::shared_ptr<Modulehandler> m_modulehandler;
     std::shared_ptr<TestModule> m_testmodule;
     std::shared_ptr<TestEngine> m_testengine;
