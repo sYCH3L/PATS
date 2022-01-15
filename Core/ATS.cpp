@@ -32,7 +32,7 @@ ATS::ATS() : Modules()
     this->m_backend = std::shared_ptr<Backend>(new Backend());
     this->m_testmodule = std::shared_ptr<TestModule>(new TestModule);
     this->m_testengine = std::shared_ptr<TestEngine>(new TestEngine(this->m_testmodule));
-    this->m_jobcontroller = std::shared_ptr<JobController>(new JobController());
+    this->m_jobcontroller = std::shared_ptr<JobController>(new JobController(this->m_testengine));
 
     InitExtHandlers();
 

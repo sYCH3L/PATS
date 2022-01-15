@@ -9,6 +9,7 @@
 #include <mutex>
 #include <functional>
 #include <filesystem>
+#include <iostream>
 
 #include "Version.h"
 
@@ -33,6 +34,8 @@ public:
     void AddTestplan(std::string location);
     void RemoveTestplan(std::string name);
     bool AddToQueue(std::string name);
+
+    std::list<std::string> GetTestPlans();
 
 private:
     void RegisterTestplans();

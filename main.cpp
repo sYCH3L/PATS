@@ -2,8 +2,17 @@
 #include "Core/ATS.h"
 #include "Logging/logger.h"
 
-int main() {
+int main()
+{
     init_logging(boost::log::trivial::info);
-    ATS obj;
-    while(1);
+    try
+    {
+        ATS obj;
+        while (1)
+            ;
+    }catch(std::exception &e)
+    {
+        std::cout << "Terminating because " << e.what() << std::endl;
+    }
+    return 0;
 }

@@ -18,7 +18,7 @@ public:
     std::vector<TestItem> GetTests();
     std::list<std::string> GetModules();
     std::string ToJson();
-    std::string FromJson();
+    bool FromJson(std::string data);
     std::string GetName();
     void SetTests(std::vector<TestItem> tsts);
     void SetModules(std::list<std::string> mdls);

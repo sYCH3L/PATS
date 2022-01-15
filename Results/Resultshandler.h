@@ -18,6 +18,8 @@ public:
     Results(std::string name);
     bool AddTestResult(std::string name, TestResult res);
     std::string ToJson();
+    bool FromJson(std::string data);
+    bool WriteFile();
 
     template <typename Writer>
 	void Serialize(Writer &writer) const
@@ -37,6 +39,8 @@ public:
             writer.Int(v);
             writer.EndObject();
         }
+
+        
     }
 private:
     std::time_t m_starttime;

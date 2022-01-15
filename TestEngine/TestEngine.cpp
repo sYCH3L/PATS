@@ -1,5 +1,7 @@
 #include "TestEngine.h"
 
+#include "../Utility/Utility.h"
+
 using std::filesystem::current_path;
 
 TestEngine::TestEngine(std::shared_ptr<TestModule> ptr) : Modules()
@@ -10,7 +12,7 @@ TestEngine::TestEngine(std::shared_ptr<TestModule> ptr) : Modules()
     RegisterTestplans();
 }
 /**
- * Registers all available testplans from testplan directory
+ * Gets testplan location from m_testplans
  * @param key name of the testplan
  * @param res the result will be placed there
  * @return true if found false if not
@@ -37,7 +39,7 @@ void TestEngine::TestEngineLoop()
     {
         std::string next_test = GetFromQueue();
         std::string testplan_loc;
-        if (!next_test.empty() && !GetTestplanLocation(next_test, testplan_loc))
+        if (!next_test.empty() && GetTestplanLocation(next_test, testplan_loc))
         {
             //Get all tests ready from testplan
             Testplan cur_testplan(testplan_loc);
@@ -76,7 +78,7 @@ void TestEngine::TestEngineLoop()
                 res.AddTestResult(t.GetName(), fn(t.GetParameters()));
             }
 
-            //TODO: Do something with result
+            res.WriteFile();
         }
     }
 }
@@ -130,7 +132,7 @@ void TestEngine::AddTestplan(std::string location)
 std::string TestEngine::GetFromQueue()
 {
     {
-        std::lock_guard<std::mutex>  lk(m_mtx);
+        std::lock_guard<std::mutex> lk(m_mtx);
         if (!m_test_queue.empty())
         {
             std::string test = this->m_test_queue.front();
@@ -141,19 +143,25 @@ std::string TestEngine::GetFromQueue()
     }
 }
 /**
- * Pops the next standing test from queue
+ * Removes testplan from registered testplans
  * @param name name of the testplan to be removed
  */
 void TestEngine::RemoveTestplan(std::string name)
 {
     {
-        std::lock_guard<std::mutex>  lk(m_tmtx);
+        std::lock_guard<std::mutex> lk(m_tmtx);
         for (auto &t : this->m_testplans)
         {
             if (t.find(name) != std::string::npos)
             {
                 this->m_testplans.remove(t);
+                return; //if its the only element it will crash if you dont return
             }
         }
     }
+}
+
+std::list<std::string> TestEngine::GetTestPlans()
+{
+    return m_testplans;
 }
