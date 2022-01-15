@@ -146,7 +146,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 - [] Write module compiling instructions
 - [] Write example front-end for controlling
-- [] Running testplans api call needs finishing
+- [✓] Running testplans api call needs finishing
 - [] TestEngine
     - [] Test the current functionality
 

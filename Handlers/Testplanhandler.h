@@ -22,6 +22,7 @@ private:
     void AllTestplans(const Rest::Request &request, Http::ResponseWriter response);
     void Deletetestplan(const Rest::Request &request, Http::ResponseWriter response);
     void Gettestplan(const Rest::Request &request, Http::ResponseWriter response);
+    void RunTestplan(const Rest::Request &request, Http::ResponseWriter response);
     std::shared_ptr<JobController> m_jobcontroller;
 };
 

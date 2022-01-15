@@ -19,6 +19,22 @@ void TestplanHandler::InitRoutes(Rest::Router &router)
     Routes::Delete(router, "/api/v1/testplan/:name", Routes::bind(&TestplanHandler::Deletetestplan, this));
     Routes::Get(router, "/api/v1/testplan", Routes::bind(&TestplanHandler::AllTestplans, this));
     Routes::Get(router, "/api/v1/testplan/:name", Routes::bind(&TestplanHandler::Gettestplan, this));
+    Routes::Post(router, "/api/v1/testplan/run/:name", Routes::bind(&TestplanHandler::RunTestplan, this));
+}
+
+void TestplanHandler::RunTestplan(const Rest::Request &request, Http::ResponseWriter response)
+{
+    auto name = request.param(":name").as<std::string>();
+    std::string body = request.body();
+    if (!m_jobcontroller.get()->CheckIfTestplanExists(name))
+    {
+        response.send(Http::Code::Ok, std::string("{ message: \"does not exsist\" }"));
+    }
+
+    m_jobcontroller.get()->RunTestplan(name);
+
+    response.send(Http::Code::Ok, std::string("{ message: \"ok\" }"));
+
 }
 
 void TestplanHandler::NewTestplan(const Rest::Request &request, Http::ResponseWriter response)
@@ -30,7 +46,7 @@ void TestplanHandler::NewTestplan(const Rest::Request &request, Http::ResponseWr
         response.send(Http::Code::Ok, std::string("{ message: \"already exists\" }"));
     }
 
-    if(m_jobcontroller.get()->AddTestPlan(name,body))
+    if (m_jobcontroller.get()->AddTestPlan(name, body))
     {
         response.send(Http::Code::Ok, std::string("{ message: \"ok\" }"));
     }
@@ -38,7 +54,6 @@ void TestplanHandler::NewTestplan(const Rest::Request &request, Http::ResponseWr
     {
         response.send(Http::Code::Ok, std::string("{ message: \"error\" }"));
     }
-
 }
 
 void TestplanHandler::Deletetestplan(const Rest::Request &request, Http::ResponseWriter response)
