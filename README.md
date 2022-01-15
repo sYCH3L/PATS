@@ -121,7 +121,7 @@ Modular Testing system for embedded systems with REST API interaction
    ```sh
    mkdir build && cd build && cmake .. && make
    ```
-3. Run ATS
+3. Run PATS
    ```sh
    ./PATS
    ```
