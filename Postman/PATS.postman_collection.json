@@ -31,7 +31,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseurl}}/testplan/?:name=jobi",
+							"raw": "{{baseurl}}/testplan/?:name=test",
 							"host": [
 								"{{baseurl}}"
 							],
@@ -42,7 +42,7 @@
 							"query": [
 								{
 									"key": ":name",
-									"value": "jobi"
+									"value": "test"
 								}
 							]
 						}
@@ -74,7 +74,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"jobi\",\n    \"tests\": [],\n    \"modules\": []\n}"
+							"raw": "{\n    \"name\": \"test\",\n    \"tests\": [],\n    \"modules\": []\n}"
 						},
 						"url": {
 							"raw": "{{baseurl}}/testplan/jobi",
