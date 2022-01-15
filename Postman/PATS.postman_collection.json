@@ -31,7 +31,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseurl}}/testplan/?:name=asd",
+							"raw": "{{baseurl}}/testplan/?:name=jobi",
 							"host": [
 								"{{baseurl}}"
 							],
@@ -42,7 +42,7 @@
 							"query": [
 								{
 									"key": ":name",
-									"value": "asd"
+									"value": "jobi"
 								}
 							]
 						}
@@ -55,13 +55,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseurl}}/testplan/",
+							"raw": "{{baseurl}}/testplan/jobi",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
 								"testplan",
-								""
+								"jobi"
 							]
 						}
 					},
@@ -70,9 +70,22 @@
 				{
 					"name": "New testplan",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
-						"url": null
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"jobi\",\n    \"tests\": [],\n    \"modules\": []\n}"
+						},
+						"url": {
+							"raw": "{{baseurl}}/testplan/jobi",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"testplan",
+								"jobi"
+							]
+						}
 					},
 					"response": []
 				}
@@ -86,7 +99,22 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "{{baseurl}}/testmodules/:id",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"testmodules",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "asd"
+								}
+							]
+						}
 					},
 					"response": []
 				},
@@ -95,7 +123,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "{{baseurl}}/testmodules",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"testmodules"
+							]
+						}
 					},
 					"response": []
 				}
@@ -109,7 +145,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "{{baseurl}}/results",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"results"
+							]
+						}
 					},
 					"response": []
 				},
@@ -118,7 +162,22 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "{{baseurl}}/results/:id",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"results",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "asd"
+								}
+							]
+						}
 					},
 					"response": []
 				}
