@@ -54,6 +54,8 @@ public:
     {
     }
 
+    Value GetValue() { return m_value; }
+
     void SetTypeTag(TypeTag t)
     {
         m_type = t;
