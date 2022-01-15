@@ -55,13 +55,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseurl}}/testplan/jobi",
+							"raw": "{{baseurl}}/testplan/test",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
 								"testplan",
-								"jobi"
+								"test"
 							]
 						}
 					},
@@ -77,13 +77,13 @@
 							"raw": "{\n    \"name\": \"test\",\n    \"tests\": [],\n    \"modules\": []\n}"
 						},
 						"url": {
-							"raw": "{{baseurl}}/testplan/jobi",
+							"raw": "{{baseurl}}/testplan/test",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
 								"testplan",
-								"jobi"
+								"test"
 							]
 						}
 					},
